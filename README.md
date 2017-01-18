@@ -1,30 +1,80 @@
-> **Note**: This branch (master) contains a skeleton without any app code, perfect for creating a _new_ application or challenge. If you're looking for an example app built with this skeleton, take a look at the [example](/../..//tree/example) branch which includes basic CRUD and RSpec tests.
+# Hacker News Clone Part 1
 
-### Purpose
-The Sinatra Skeleton:
+## Learning Competencies
 
-1. Provides a foundation for building challenges or creating a new Sinatra application.
-2. Demonstrates a reasonable set of practices around building Sinatra applications.
-3. Eases the transition to Rails for Dev Bootcamp students
+* Use the MVC pattern in web applications with proper allocation of code and
+  responsibilities to each layer
+* Implement CRUD in an MVC application
+* Implement user login and authentication in a web application
 
-### Quickstart
+## Summary
 
-1.  `bundle install`
-2.  `shotgun config.ru`
+We're going to build a [Hacker News][] clone in Sinatra.  This will be the most
+fully-featured web application we've built so far.  Excited?!
 
-As needed, create models & migrations with the `rake` tasks:
+## Part 1: Users, Posts and Comments
 
-```
-rake generate:migration  # Create an empty migration in db/migrate, e.g., rake generate:migration NAME=create_tasks
-rake generate:model      # Create an empty model in app/models, e.g., rake generate:model NAME=User
-```
+Design the flow to be as similar to [Hacker News][] as possible.  We'll add one
+exception: comments don't need to be threaded.  But the rest should be similar
+to Hacker News: users, posts, and comments.  Do not implement votes in this
+version.
 
-### Contributing
+## Releases
 
-We would love for you to help make the skeleton more awesome, There are three ways to contribute:
+### Release 0: Wireframes
 
-1. Ask for a bug fix or enhancement!
-2. Submit a pull request for a bug fix or enhancement!
-3. Code review an open pull request!
+This application is big enough you should spend time wireframing it.  Wireframe
+the following pages:
 
-Be prepared to give and receive specific, actionable, and kind feedback!
+1. An index page listing all the posts
+2. A page showing a particular post, including comments
+3. A user profile page
+4. A page showing all a user's submissions
+5. A page showing all a user's comments
+6. A user signup and login page
+
+### Release 1: Models &amp; Controllers
+
+At the very least you should have the following models:
+
+1. `Post`
+2. `User`
+3. `Comment`
+
+Don't worry about threaded comments, unless you're feeling adventurous.  Even
+if you are feeling adventurous, trying to implement threaded comments now might
+derail your momentum: wait until you have a non-threaded version working before
+you try your hand at a threaded version.
+
+Also, don't worry about Hacker News' fancy sorting algorithms for the post
+homepage and comment threads.  Just sort them in some simple way:
+chronologically, alphabetically, etc.
+
+#### Routes
+
+Give some thought to your controller routes before creating them. Consider
+following the RESTful routing convention instead of coming up with your own
+convention. Here are some routes to get you thinking in a RESTful way:
+
+
+|                             | HTTP Verb | URL                 |
+|-----------------------------|-----------|---------------------|
+| View all posts              | GET       | /posts              |
+| View a single post          | GET       | /posts/:id          |
+| Add a comment to a post     | POST      | /posts/:id/comments |
+| View all comments by a user | GET       | /users/:id/comments |
+
+
+### Release 2 : Views
+
+Implement all the views.  Don't worry about AJAX at first.
+
+<!-- ## Optimize Your Learning -->
+
+
+## Resources
+
+* [Hacker News][] -- *protip: don't read the comments on social issue posts*
+
+
+[Hacker News]: http://news.ycombinator.com

@@ -1,7 +1,43 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
-
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  signup();
+  login();
 });
+
+
+var signup = function(){
+  $(".signup").on("click", ".button", function(e){
+    e.preventDefault();
+    var url = $(".signup").attr("action") + "?" + $(".signup").serialize();
+
+    $.ajax({
+      url: url,
+      method: "POST"
+    }).done(function(response){
+      if (response==="login"){
+        window.location.href = "/";
+      }else{
+        $("#error-list").remove();
+        $(".errors").append(response);
+      };
+    });
+  });
+};
+
+
+var login = function(){
+  $(".login").on("click", ".button", function(e){
+    e.preventDefault();
+    var url = $(".login").attr("action") + "?" + $(".login").serialize();
+    $.ajax({
+      url: url,
+      method: "POST"
+    }).done(function(response){
+      if (response==="login"){
+        window.location.href = "/";
+      }else{
+        $(".error").remove();
+        $(".error-list").append(response);
+      };
+    });
+  });
+};
