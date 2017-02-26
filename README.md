@@ -1,6 +1,9 @@
-#### Sinatra Skeleton for phase 2
+#### Sinatra Skeleton
 
--includes user authentication with error messages
--includes layout
+- includes user authentication 
+- handles errors
+- basic file layout
+- basic configuration
 
-By Matt
+
+
